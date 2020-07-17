@@ -3,23 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_learn">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.kkndesasendang.sendangsmartlearning.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_learn"
+        android:name="com.kkndesasendang.sendangsmartlearning.ui.learn.selectGrade.SelectGradeFragment"
+        android:label="@string/page_select_class"
+        tools:layout="@layout/fragment_select_grade" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.kkndesasendang.sendangsmartlearning.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_match"
+        android:name="com.kkndesasendang.sendangsmartlearning.ui.match.FindMatchFragment"
+        android:label="@string/menu_match"
+        tools:layout="@layout/fragment_find_match" />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.kkndesasendang.sendangsmartlearning.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
 </navigation>
