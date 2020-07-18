@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -25,6 +26,7 @@ public class AudioVisualParentFragment extends Fragment {
     private ViewPagerAdapter mAdapter;
 
     private AudioVisualContent[] avContents;
+    private String materialName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +41,8 @@ public class AudioVisualParentFragment extends Fragment {
 
         if (getArguments() != null) {
             avContents = AudioVisualParentFragmentArgs.fromBundle(getArguments()).getMaterial();
+            materialName = AudioVisualParentFragmentArgs.fromBundle(getArguments()).getMaterialName();
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(materialName);
         }
 
         mViewPager = view.findViewById(R.id.audioVisParentViewPager);

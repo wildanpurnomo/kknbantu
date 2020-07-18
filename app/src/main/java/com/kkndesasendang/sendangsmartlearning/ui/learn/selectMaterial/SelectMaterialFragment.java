@@ -68,7 +68,7 @@ public class SelectMaterialFragment extends Fragment implements MaterialListAdap
     public void onItemClick(Material data, View view) {
         if (data.getClass() == AudioVisualMaterial.class) {
             AudioVisualContent avContents[] = ((AudioVisualMaterial) data).getContents().toArray(new AudioVisualContent[0]);
-            Navigation.findNavController(view).navigate(SelectMaterialFragmentDirections.actionNavSelectMaterialToNavAudioVisual(avContents));
+            Navigation.findNavController(view).navigate(SelectMaterialFragmentDirections.actionNavSelectMaterialToNavAudioVisual(avContents, data.getMaterialName()));
         }
     }
 }

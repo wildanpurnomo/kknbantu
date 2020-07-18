@@ -50,6 +50,9 @@
             <argument
                 android:name="material"
                 app:argType="com.kkndesasendang.sendangsmartlearning.model.AudioVisualContent[]" />
+            <argument
+                android:name="materialName"
+                app:argType="string"/>
         </action>
     </fragment>
 
@@ -61,6 +64,9 @@
         <argument
             android:name="material"
             app:argType="com.kkndesasendang.sendangsmartlearning.model.AudioVisualContent[]" />
+        <argument
+            android:name="materialName"
+            app:argType="string"/>
     </fragment>
 
     <fragment

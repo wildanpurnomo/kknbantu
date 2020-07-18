@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -16,6 +17,8 @@ import android.view.ViewGroup;
 import com.kkndesasendang.sendangsmartlearning.R;
 import com.kkndesasendang.sendangsmartlearning.model.Grade;
 import com.kkndesasendang.sendangsmartlearning.model.Material;
+
+import java.util.Objects;
 
 import static android.content.ContentValues.TAG;
 
@@ -42,6 +45,7 @@ public class SelectLearningModeFragment extends Fragment {
 
         if (getArguments() != null) {
             gradeChosen = SelectLearningModeFragmentArgs.fromBundle(getArguments()).getGradeChosen();
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(gradeChosen.getGradeName());
         }
 
         mCardMaterial = view.findViewById(R.id.selectLearningModeMaterial);
