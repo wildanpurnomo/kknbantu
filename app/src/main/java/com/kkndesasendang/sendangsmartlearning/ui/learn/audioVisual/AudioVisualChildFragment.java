@@ -81,10 +81,16 @@ public class AudioVisualChildFragment extends Fragment {
             }
         });
 
+        mMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
+                return false;
+            }
+        });
+
         mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                mediaPlayer.release();
                 pauseButton.setVisibility(View.GONE);
                 playButton.setVisibility(View.VISIBLE);
             }

@@ -19,9 +19,26 @@ public class SelectGradeViewModel extends ViewModel {
     public void setGradeList() {
         ArrayList<Grade> gradeList = new ArrayList<>();
         gradeList.add(new Grade("Kelas 1 SD", new ArrayList<>(Arrays.asList(
-                new AudioVisualMaterial("Bab 1: Pengenalan Buah-Buahan", new ArrayList<>(Arrays.asList(
-                        new AudioVisualContent("grimm", R.raw.tes),
-                        new AudioVisualContent("nightmarionne", R.raw.clinking_glasses)))),
+                new AudioVisualMaterial("Bab 1: Buah-Buahan", new ArrayList<>(Arrays.asList(
+                        new AudioVisualContent("apple", R.raw.apple),
+                        new AudioVisualContent("avocado", R.raw.avocado),
+                        new AudioVisualContent("banana", R.raw.banana),
+                        new AudioVisualContent("cherry", R.raw.cherry),
+                        new AudioVisualContent("coconut", R.raw.coconut),
+                        new AudioVisualContent("custard_apple", R.raw.custard_apple),
+                        new AudioVisualContent("grape", R.raw.grape),
+                        new AudioVisualContent("guava", R.raw.guava),
+                        new AudioVisualContent("kurma", R.raw.kurma),
+                        new AudioVisualContent("lychee", R.raw.leci),
+                        new AudioVisualContent("mango", R.raw.mangga),
+                        new AudioVisualContent("mangosteen", R.raw.mangosteen),
+                        new AudioVisualContent("melon", R.raw.melon),
+                        new AudioVisualContent("orange", R.raw.orange),
+                        new AudioVisualContent("pineapple", R.raw.nanas),
+                        new AudioVisualContent("soursop", R.raw.soursop),
+                        new AudioVisualContent("starfruit", R.raw.star),
+                        new AudioVisualContent("strawberry", R.raw.strawberry),
+                        new AudioVisualContent("watermelon", R.raw.watermelon)))),
                 new Material("Bab 2: Pengenalan Sayur-Sayuran"),
                 new Material("Bab 3: Pengenalan Cabe-Cabean"),
                 new Material("Bab 4: Pengenalan Tubuh Manusia"),
