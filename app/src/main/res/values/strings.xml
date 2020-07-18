@@ -34,4 +34,5 @@
     <string name="page_select_material">Pilih Materi</string>
     <string name="empty_material_prompt">Materi belum tersedia saat ini</string>
     <string name="page_audio_visual">Audio Visual</string>
+    <string name="page_audio_vis_text">Geser layar untuk gambar selanjutnya</string>
 </resources>

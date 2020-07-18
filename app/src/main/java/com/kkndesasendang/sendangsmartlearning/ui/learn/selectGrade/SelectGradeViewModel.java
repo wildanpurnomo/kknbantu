@@ -20,8 +20,8 @@ public class SelectGradeViewModel extends ViewModel {
         ArrayList<Grade> gradeList = new ArrayList<>();
         gradeList.add(new Grade("Kelas 1 SD", new ArrayList<>(Arrays.asList(
                 new AudioVisualMaterial("Bab 1: Pengenalan Buah-Buahan", new ArrayList<>(Arrays.asList(
-                        new AudioVisualContent("grimm", "tes"),
-                        new AudioVisualContent("nightmarionne", "clinking_glasses")))),
+                        new AudioVisualContent("grimm", R.raw.tes),
+                        new AudioVisualContent("nightmarionne", R.raw.clinking_glasses)))),
                 new Material("Bab 2: Pengenalan Sayur-Sayuran"),
                 new Material("Bab 3: Pengenalan Cabe-Cabean"),
                 new Material("Bab 4: Pengenalan Tubuh Manusia"),

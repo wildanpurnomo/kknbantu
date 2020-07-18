@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 public class AudioVisualContent implements Parcelable {
     private String imageResourceName;
-    private String audioResourceName;
+    private int audioResourceName;
 
-    public AudioVisualContent(String imageResourceName, String audioResourceName) {
+    public AudioVisualContent(String imageResourceName, int audioResourceName) {
         this.imageResourceName = imageResourceName;
         this.audioResourceName = audioResourceName;
     }
@@ -16,7 +16,7 @@ public class AudioVisualContent implements Parcelable {
         return imageResourceName;
     }
 
-    public String getAudioResourceName() {
+    public int getAudioResourceName() {
         return audioResourceName;
     }
 
@@ -32,12 +32,12 @@ public class AudioVisualContent implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.imageResourceName);
-        dest.writeString(this.audioResourceName);
+        dest.writeInt(this.audioResourceName);
     }
 
     protected AudioVisualContent(Parcel in) {
         this.imageResourceName = in.readString();
-        this.audioResourceName = in.readString();
+        this.audioResourceName = in.readInt();
     }
 
     public static final Parcelable.Creator<AudioVisualContent> CREATOR = new Parcelable.Creator<AudioVisualContent>() {

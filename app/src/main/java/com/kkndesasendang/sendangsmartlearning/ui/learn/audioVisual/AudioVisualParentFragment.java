@@ -42,13 +42,13 @@ public class AudioVisualParentFragment extends Fragment {
         }
 
         mViewPager = view.findViewById(R.id.audioVisParentViewPager);
+        mViewPager.setPageTransformer(new DepthPageTransformer());
         List<Fragment> fragments = new ArrayList<>();
 
         for (AudioVisualContent avContent : avContents) {
             Bundle bundle = new Bundle();
-            Log.d(TAG, "onViewCreated: " + avContent.getImageResourceName() + " " + avContent.getAudioResourceName());
             bundle.putString(AudioVisualChildFragment.EXTRA_IMAGE, avContent.getImageResourceName());
-            bundle.putString(AudioVisualChildFragment.EXTRA_AUDIO, avContent.getAudioResourceName());
+            bundle.putInt(AudioVisualChildFragment.EXTRA_AUDIO, avContent.getAudioResourceName());
             AudioVisualChildFragment newFragment = new AudioVisualChildFragment();
             newFragment.setArguments(bundle);
             fragments.add(newFragment);

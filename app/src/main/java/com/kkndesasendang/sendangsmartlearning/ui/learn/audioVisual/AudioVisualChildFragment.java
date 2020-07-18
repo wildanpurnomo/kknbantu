@@ -1,6 +1,11 @@
 package com.kkndesasendang.sendangsmartlearning.ui.learn.audioVisual;
 
+import android.content.res.AssetFileDescriptor;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,15 +21,17 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kkndesasendang.sendangsmartlearning.R;
 
+import java.io.IOException;
+
 public class AudioVisualChildFragment extends Fragment {
     public static final String EXTRA_IMAGE = "extra_image";
-    public static final String EXTRA_AUDIO = "extra_audio";
+    public static final String EXTRA_AUDIO= "extra_audio";
 
-    private SoundPool mSoundPool;
-    private int mSoundId;
-    private boolean isSpLoaded = false;
+    private MediaPlayer mMediaPlayer = null;
+    private boolean isReady;
 
-    private String imageResourceName, audioResourceName;
+    private String imageResourceName;
+    private int audioResourceName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,7 +40,7 @@ public class AudioVisualChildFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_audio_visual_child, container, false);
         if (getArguments() != null) {
             imageResourceName = getArguments().getString(EXTRA_IMAGE);
-            audioResourceName = getArguments().getString(EXTRA_AUDIO);
+            audioResourceName = getArguments().getInt(EXTRA_AUDIO);
         }
         return view;
     }
@@ -43,32 +50,67 @@ public class AudioVisualChildFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ImageView img = view.findViewById(R.id.audioVisChildImage);
-        ImageView playButton = view.findViewById(R.id.audioVisChildPlay);
-        ImageView pauseButton = view.findViewById(R.id.audioVisChildPause);
-        mSoundPool = new SoundPool.Builder()
-                .setMaxStreams(10)
-                .build();
+        final ImageView playButton = view.findViewById(R.id.audioVisChildPlay);
+        final ImageView pauseButton = view.findViewById(R.id.audioVisChildPause);
+        mMediaPlayer = new MediaPlayer();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes attribute = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+            mMediaPlayer.setAudioAttributes(attribute);
+        } else {
+            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        }
 
         Glide.with(this).load(getResources().getIdentifier(imageResourceName, "drawable", requireActivity().getPackageName())).into(img);
 
-        mSoundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+        AssetFileDescriptor afd = requireActivity().getApplicationContext().getResources().openRawResourceFd(audioResourceName);
+        try {
+            mMediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
-            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                if (status == 0) {
-                    isSpLoaded = true;
-                } else {
-                    Toast.makeText(requireContext(), "Gagal Load", Toast.LENGTH_SHORT).show();
-                }
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                isReady = true;
+                mMediaPlayer.start();
             }
         });
 
-        mSoundId = mSoundPool.load(requireContext(), getResources().getIdentifier(audioResourceName, "raw", requireActivity().getPackageName()), 1);
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.release();
+                pauseButton.setVisibility(View.GONE);
+                playButton.setVisibility(View.VISIBLE);
+            }
+        });
 
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isSpLoaded) {
-                    mSoundPool.play(mSoundId, 1, 1, 0, 0, 1);
+                if (!isReady) {
+                    mMediaPlayer.prepareAsync();
+                } else {
+                    mMediaPlayer.start();
+                }
+                playButton.setVisibility(View.GONE);
+                pauseButton.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        pauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mMediaPlayer.isPlaying()) {
+                    mMediaPlayer.pause();
+                    playButton.setVisibility(View.VISIBLE);
+                    pauseButton.setVisibility(View.GONE);
                 }
             }
         });
