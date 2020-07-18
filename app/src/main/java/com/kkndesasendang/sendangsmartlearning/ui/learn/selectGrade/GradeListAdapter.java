@@ -14,10 +14,21 @@ import com.kkndesasendang.sendangsmartlearning.model.Grade;
 import java.util.ArrayList;
 
 public class GradeListAdapter extends RecyclerView.Adapter<GradeListAdapter.GradeListViewHolder> {
-    private ArrayList<Grade> gradeList;
+    private ArrayList<Grade> gradeList = new ArrayList<>();
 
-    public GradeListAdapter(ArrayList<Grade> gradeList) {
-        this.gradeList = gradeList;
+    private OnItemClickCallback mOnItemClickCallback;
+
+    interface OnItemClickCallback {
+        void onItemClick(Grade data, View view);
+    }
+
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback){
+        mOnItemClickCallback = onItemClickCallback;
+    }
+
+    public void updateDataset(ArrayList<Grade> dataset) {
+        gradeList = dataset;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -45,8 +56,15 @@ public class GradeListAdapter extends RecyclerView.Adapter<GradeListAdapter.Grad
             tvGradeName = itemView.findViewById(R.id.itemGradeName);
         }
 
-        public void bindTo(Grade grade) {
+        public void bindTo(final Grade grade) {
             tvGradeName.setText(grade.getGradeName());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mOnItemClickCallback.onItemClick(grade, view);
+                }
+            });
         }
     }
 }

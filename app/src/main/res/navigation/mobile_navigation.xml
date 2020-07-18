@@ -9,7 +9,59 @@
         android:id="@+id/nav_learn"
         android:name="com.kkndesasendang.sendangsmartlearning.ui.learn.selectGrade.SelectGradeFragment"
         android:label="@string/page_select_class"
-        tools:layout="@layout/fragment_select_grade" />
+        tools:layout="@layout/fragment_select_grade">
+        <action
+            android:id="@+id/action_nav_learn_to_nav_learning_mode"
+            app:destination="@id/nav_learning_mode">
+            <argument
+                android:name="gradeChosen"
+                app:argType="com.kkndesasendang.sendangsmartlearning.model.Grade" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_learning_mode"
+        android:name="com.kkndesasendang.sendangsmartlearning.ui.learn.selectLearningMode.SelectLearningModeFragment"
+        android:label="@string/page_select_mode"
+        tools:layout="@layout/fragment_select_learning_mode">
+        <argument
+            android:name="gradeChosen"
+            app:argType="com.kkndesasendang.sendangsmartlearning.model.Grade" />
+        <action
+            android:id="@+id/action_nav_learning_mode_to_nav_select_material"
+            app:destination="@id/nav_select_material">
+            <argument
+                android:name="materials"
+                app:argType="com.kkndesasendang.sendangsmartlearning.model.Material[]" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_select_material"
+        android:name="com.kkndesasendang.sendangsmartlearning.ui.learn.selectMaterial.SelectMaterialFragment"
+        android:label="@string/page_select_material"
+        tools:layout="@layout/fragment_select_material">
+        <argument
+            android:name="materials"
+            app:argType="com.kkndesasendang.sendangsmartlearning.model.Material[]" />
+        <action
+            android:id="@+id/action_nav_select_material_to_nav_audio_visual"
+            app:destination="@id/nav_audio_visual">
+            <argument
+                android:name="material"
+                app:argType="com.kkndesasendang.sendangsmartlearning.model.AudioVisualContent[]" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_audio_visual"
+        android:name="com.kkndesasendang.sendangsmartlearning.ui.learn.audioVisual.AudioVisualParentFragment"
+        android:label="@string/page_audio_visual"
+        tools:layout="@layout/fragment_audio_visual_parent">
+        <argument
+            android:name="material"
+            app:argType="com.kkndesasendang.sendangsmartlearning.model.AudioVisualContent[]" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_match"

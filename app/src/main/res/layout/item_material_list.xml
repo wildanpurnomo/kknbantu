@@ -8,9 +8,8 @@
 
     <androidx.cardview.widget.CardView
         style="@style/CardViewOption"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/itemGradeName"
+            android:id="@+id/itemMaterialName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -31,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Kelas 1 SD" />
+            tools:text="Bab 1: Proses Pencernaan Manusia" />
     </androidx.cardview.widget.CardView>
 
 

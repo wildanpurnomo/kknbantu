@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.learn.audioVisual.AudioVisualChildFragment">
+
+    <ImageView
+        android:id="@+id/audioVisChildImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        tools:src="@drawable/nightmarionne" />
+
+    <ImageView
+        android:id="@+id/audioVisChildPlay"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/audioVisChildImage"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_play_arrow_24" />
+
+    <ImageView
+        android:id="@+id/audioVisChildPause"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/audioVisChildImage"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_pause_24"
+        android:visibility="gone" />
+
+</RelativeLayout>

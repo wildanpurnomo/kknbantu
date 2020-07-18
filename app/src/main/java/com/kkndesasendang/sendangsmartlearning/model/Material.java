@@ -6,10 +6,22 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 
 public class Material implements Parcelable {
-    private ArrayList<Chapter> materialChapters;
+    private String materialName;
 
-    public Material(ArrayList<Chapter> materialChapters) {
-        this.materialChapters = materialChapters;
+    public Material(String materialName) {
+        this.materialName = materialName;
+    }
+
+    public String getMaterialName() {
+        return materialName;
+    }
+
+    public void setMaterialName(String materialName) {
+        this.materialName = materialName;
+    }
+
+    public static Creator<Material> getCREATOR() {
+        return CREATOR;
     }
 
     @Override
@@ -19,12 +31,11 @@ public class Material implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeList(this.materialChapters);
+        dest.writeString(this.materialName);
     }
 
     protected Material(Parcel in) {
-        this.materialChapters = new ArrayList<Chapter>();
-        in.readList(this.materialChapters, Chapter.class.getClassLoader());
+        this.materialName = in.readString();
     }
 
     public static final Parcelable.Creator<Material> CREATOR = new Parcelable.Creator<Material>() {

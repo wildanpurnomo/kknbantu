@@ -27,4 +27,11 @@
         <item>Kelas 5 SD</item>
         <item>Kelas 6 SD</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="learning_mode_material">Materi</string>
+    <string name="learning_mode_quiz">Quiz</string>
+    <string name="page_select_material">Pilih Materi</string>
+    <string name="empty_material_prompt">Materi belum tersedia saat ini</string>
+    <string name="page_audio_visual">Audio Visual</string>
 </resources>
