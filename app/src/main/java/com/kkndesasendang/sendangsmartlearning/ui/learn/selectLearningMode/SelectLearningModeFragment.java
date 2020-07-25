@@ -42,20 +42,13 @@ public class SelectLearningModeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-        if (getArguments() != null) {
-            gradeChosen = SelectLearningModeFragmentArgs.fromBundle(getArguments()).getGradeChosen();
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(gradeChosen.getGradeName());
-        }
-
         mCardMaterial = view.findViewById(R.id.selectLearningModeMaterial);
         mCardQuiz = view.findViewById(R.id.selectLearningModeQuiz);
 
         mCardMaterial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Material[] materials = gradeChosen.getGradeMaterials().toArray(new Material[0]);
-                Navigation.findNavController(view).navigate(SelectLearningModeFragmentDirections.actionNavLearningModeToNavSelectMaterial(materials));
+                Navigation.findNavController(view).navigate(R.id.action_nav_learning_mode_to_nav_select_material);
             }
         });
     }
