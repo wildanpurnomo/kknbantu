@@ -41,6 +41,30 @@ public class SelectMaterialViewModel extends ViewModel {
                 new AudioVisualContent("watermelon", R.raw.watermelon)
         ))));
 
+        // Animals
+        materials.add(new AudioVisualMaterial("Hewan-Hewanan", new ArrayList<>(Arrays.asList(
+                new AudioVisualContent("badak", R.raw.badak),
+                new AudioVisualContent("beruang", R.raw.beruang),
+                new AudioVisualContent("elang", R.raw.elang),
+                new AudioVisualContent("gajah", R.raw.gajah),
+                new AudioVisualContent("harimau", R.raw.harimau),
+                new AudioVisualContent("ikan", R.raw.ikan),
+                new AudioVisualContent("jerapah", R.raw.jerapah),
+                new AudioVisualContent("kambing", R.raw.kambing),
+                new AudioVisualContent("keledai", R.raw.keledai),
+                new AudioVisualContent("kelinci", R.raw.kelinci),
+                new AudioVisualContent("kucing", R.raw.kucing),
+                new AudioVisualContent("kuda", R.raw.kuda),
+                new AudioVisualContent("monyet", R.raw.monyet),
+                new AudioVisualContent("rusa", R.raw.rusa),
+                new AudioVisualContent("sapi", R.raw.sapi),
+                new AudioVisualContent("serigala", R.raw.serigala),
+                new AudioVisualContent("singa", R.raw.singa),
+                new AudioVisualContent("tikus", R.raw.tikus),
+                new AudioVisualContent("ular", R.raw.ular),
+                new AudioVisualContent("unta", R.raw.unta)
+        ))));
+
         this.materialList.setValue(materials);
     }
 
