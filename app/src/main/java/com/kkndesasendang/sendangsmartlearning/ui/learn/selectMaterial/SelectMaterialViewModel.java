@@ -65,6 +65,30 @@ public class SelectMaterialViewModel extends ViewModel {
                 new AudioVisualContent("unta.png", R.raw.unta)
         ))));
 
+        // Vegetables
+        materials.add(new AudioVisualMaterial("Sayur-sayuran", new ArrayList<>(Arrays.asList(
+                new AudioVisualContent("bawang-bombay.png", R.raw.bawang_bombay),
+                new AudioVisualContent("bawang-putih.png", R.raw.bawang_putih),
+                new AudioVisualContent("bayam.png", R.raw.bayam),
+                new AudioVisualContent("buncis.png", R.raw.buncis),
+                new AudioVisualContent("cabai.png", R.raw.cabai),
+                new AudioVisualContent("jagung.png", R.raw.jagung),
+                new AudioVisualContent("kacang.png", R.raw.kacang),
+                new AudioVisualContent("kentang.png", R.raw.kentang),
+                new AudioVisualContent("kubis.png", R.raw.kubis),
+                new AudioVisualContent("lobak.png", R.raw.lobak),
+                new AudioVisualContent("paprika.png", R.raw.paprika),
+                new AudioVisualContent("sawi-hijau.png", R.raw.sawi_hijau),
+                new AudioVisualContent("selada.png", R.raw.selada),
+                new AudioVisualContent("seledri.png", R.raw.selederi),
+                new AudioVisualContent("singkong.png", R.raw.singkong),
+                new AudioVisualContent("terong.png", R.raw.terong),
+                new AudioVisualContent("timun.png", R.raw.timun),
+                new AudioVisualContent("tomat.png", R.raw.tomat),
+                new AudioVisualContent("ubi-jalar.png", R.raw.ubi_jalar),
+                new AudioVisualContent("wortel.png", R.raw.wortel)
+        ))));
+
         this.materialList.setValue(materials);
     }
 
