@@ -35,4 +35,8 @@
     <string name="empty_material_prompt">Materi belum tersedia saat ini</string>
     <string name="page_audio_visual">Audio Visual</string>
     <string name="page_audio_vis_text">Geser layar untuk gambar selanjutnya</string>
+    <string name="find_match_create_username">Masukkan username</string>
+    <string name="find_match_find_match">Cari lomba</string>
+    <string name="find_match">Cari Lomba</string>
+    <string name="play_match">Bermain</string>
 </resources>

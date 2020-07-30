@@ -5,26 +5,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
-import com.github.nkzawa.emitter.Emitter;
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.kkndesasendang.sendangsmartlearning.R;
+import com.kkndesasendang.sendangsmartlearning.wsutil.SocketEventEnum;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URISyntaxException;
-
 import static com.kkndesasendang.sendangsmartlearning.helper.Helper.logMessage;
+import static com.kkndesasendang.sendangsmartlearning.helper.Helper.popToast;
 
 public class FindMatchFragment extends Fragment {
-    private Socket mSocket;
-
+    private MaterialDialog mFindingMatchDialog;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -34,47 +36,72 @@ public class FindMatchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button testBtn = view.findViewById(R.id.testBtn);
-        testBtn.setOnClickListener(new View.OnClickListener() {
+
+        mFindingMatchDialog = new MaterialDialog.Builder(requireContext())
+                .title("Lomba sedang disiapkan")
+                .content("Mencoba menghubungi server...")
+                .build();
+        final MatchViewModel mMatchViewModel = new ViewModelProvider(requireActivity()).get(MatchViewModel.class);
+        final EditText mUsernameEditText = view.findViewById(R.id.fragFindMatchET);
+        mMatchViewModel.initViewModel();
+        Button mFindMatchButton = view.findViewById(R.id.fragFindMatchBtn);
+
+        mFindMatchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSocket.emit("requestMatch", "Android");
-            }
-        });
-        nkzawaSocketConnect();
-    }
-
-    private void nkzawaSocketConnect() {
-        try {
-            mSocket = IO.socket("http://192.168.100.72:4000");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            return;
-        }
-        mSocket.on("matchUpdated", new Emitter.Listener() {
-            @Override
-            public void call(final Object... args) {
-                if (getActivity() != null) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            JSONObject data = (JSONObject) args[0];
-                            try {
-                                logMessage("matchUpdated event returns:  " + data.get("participants").toString(), this.getClass().getName());
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
+                view.setEnabled(false);
+                mFindingMatchDialog.show();
+                String username = mUsernameEditText.getText().toString().trim();
+                if (!username.isEmpty()) {
+                    mMatchViewModel.connectSocket();
                 }
             }
         });
-        mSocket.connect();
+
+        mMatchViewModel.getMatchUpdatedEventData().observe(getViewLifecycleOwner(), new Observer<JSONObject>() {
+            @Override
+            public void onChanged(JSONObject jsonObject) {
+                try {
+                    JSONArray participants = jsonObject.getJSONArray("participants");
+                    mFindingMatchDialog.setContent("Peserta bergabung: " + participants.length() + "/5");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        mMatchViewModel.getMatchReadyEventData().observe(getViewLifecycleOwner(), new Observer<JSONObject>() {
+            @Override
+            public void onChanged(JSONObject jsonObject) {
+                proceedToPlayMatch();
+            }
+        });
+
+        mMatchViewModel.getConnectionEventData().observe(getViewLifecycleOwner(), new Observer<JSONObject>() {
+            @Override
+            public void onChanged(JSONObject jsonObject) {
+                logMessage("onConnection", this.getClass().getName());
+                JSONObject payload = new JSONObject();
+                String username = mUsernameEditText.getText().toString().trim();
+                try {
+                    payload.put("username", username);
+                    mMatchViewModel.sendEvent(SocketEventEnum.REQUEST_MATCH.label, payload);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mSocket.close();
+
+    }
+
+    private void proceedToPlayMatch() {
+        mFindingMatchDialog.dismiss();
+        Navigation.findNavController(requireView()).navigate(R.id.action_nav_match_to_nav_play_match);
+        popToast(requireContext(), "Lomba berhasil dibuat");
     }
 }
