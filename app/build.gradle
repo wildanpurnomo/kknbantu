@@ -45,10 +45,6 @@ dependencies {
 
     // WebSocket from nkzawa
     implementation 'com.github.nkzawa:socket.io-client:0.6.0'
-    
-    // Material Dialog
-    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
 
     // Material ShowCaseView
     implementation 'com.github.deano2390:MaterialShowcaseView:1.3.4'

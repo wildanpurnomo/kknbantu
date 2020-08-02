@@ -25,8 +25,4 @@ public class WSInstance {
 
         return webSocketInstance;
     }
-
-    public void sendEvent() {
-
-    }
 }

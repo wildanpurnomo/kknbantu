@@ -1,20 +1,21 @@
-package com.kkndesasendang.sendangsmartlearning.ui.learn.audioVisual;
+package com.kkndesasendang.sendangsmartlearning.ui.match;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPagerAdapter extends FragmentStateAdapter {
+public class MatchViewPagerAdapter extends FragmentStateAdapter {
     private List<Fragment> fragments = new ArrayList<>();
 
     public void setFragments(List<Fragment> fragments) {
         this.fragments = fragments;
     }
 
-    public ViewPagerAdapter(@NonNull Fragment fragment) {
+    public MatchViewPagerAdapter(@NonNull Fragment fragment) {
         super(fragment);
     }
 
