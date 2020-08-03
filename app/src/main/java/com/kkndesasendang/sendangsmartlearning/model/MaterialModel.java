@@ -3,12 +3,10 @@ package com.kkndesasendang.sendangsmartlearning.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-
-public class Material implements Parcelable {
+public class MaterialModel implements Parcelable {
     private String materialName;
 
-    public Material(String materialName) {
+    public MaterialModel(String materialName) {
         this.materialName = materialName;
     }
 
@@ -20,7 +18,7 @@ public class Material implements Parcelable {
         this.materialName = materialName;
     }
 
-    public static Creator<Material> getCREATOR() {
+    public static Creator<MaterialModel> getCREATOR() {
         return CREATOR;
     }
 
@@ -34,19 +32,19 @@ public class Material implements Parcelable {
         dest.writeString(this.materialName);
     }
 
-    protected Material(Parcel in) {
+    protected MaterialModel(Parcel in) {
         this.materialName = in.readString();
     }
 
-    public static final Parcelable.Creator<Material> CREATOR = new Parcelable.Creator<Material>() {
+    public static final Parcelable.Creator<MaterialModel> CREATOR = new Parcelable.Creator<MaterialModel>() {
         @Override
-        public Material createFromParcel(Parcel source) {
-            return new Material(source);
+        public MaterialModel createFromParcel(Parcel source) {
+            return new MaterialModel(source);
         }
 
         @Override
-        public Material[] newArray(int size) {
-            return new Material[size];
+        public MaterialModel[] newArray(int size) {
+            return new MaterialModel[size];
         }
     };
 }

@@ -9,26 +9,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kkndesasendang.sendangsmartlearning.R;
-import com.kkndesasendang.sendangsmartlearning.model.Grade;
-import com.kkndesasendang.sendangsmartlearning.model.Material;
+import com.kkndesasendang.sendangsmartlearning.model.MaterialModel;
 
 import java.util.ArrayList;
 
 public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapter.MaterialListViewHolder> {
-    private ArrayList<Material> materialList = new ArrayList<>();
+    private ArrayList<MaterialModel> materialModelList = new ArrayList<>();
 
     private OnItemClickCallback mOnItemClickCallback;
 
     interface OnItemClickCallback {
-        void onItemClick(Material data, View view);
+        void onItemClick(MaterialModel data, View view);
     }
 
     public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback){
         mOnItemClickCallback = onItemClickCallback;
     }
 
-    public void updateDataset(ArrayList<Material> dataset) {
-        materialList = dataset;
+    public void updateDataset(ArrayList<MaterialModel> dataset) {
+        materialModelList = dataset;
         notifyDataSetChanged();
     }
 
@@ -41,12 +40,12 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MaterialListViewHolder holder, int position) {
-        holder.bindTo(materialList.get(position));
+        holder.bindTo(materialModelList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return materialList.size();
+        return materialModelList.size();
     }
 
     public class MaterialListViewHolder extends RecyclerView.ViewHolder {
@@ -57,13 +56,13 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
             tvMaterialList = itemView.findViewById(R.id.itemMaterialName);
         }
 
-        public void bindTo(final Material material) {
-            tvMaterialList.setText(material.getMaterialName());
+        public void bindTo(final MaterialModel materialModel) {
+            tvMaterialList.setText(materialModel.getMaterialName());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mOnItemClickCallback.onItemClick(material, view);
+                    mOnItemClickCallback.onItemClick(materialModel, view);
                 }
             });
         }

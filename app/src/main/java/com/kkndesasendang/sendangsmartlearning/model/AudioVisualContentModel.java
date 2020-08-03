@@ -3,11 +3,11 @@ package com.kkndesasendang.sendangsmartlearning.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class AudioVisualContent implements Parcelable {
+public class AudioVisualContentModel implements Parcelable {
     private String imageResourceName;
     private int audioResourceName;
 
-    public AudioVisualContent(String imageResourceName, int audioResourceName) {
+    public AudioVisualContentModel(String imageResourceName, int audioResourceName) {
         this.imageResourceName = imageResourceName;
         this.audioResourceName = audioResourceName;
     }
@@ -20,7 +20,7 @@ public class AudioVisualContent implements Parcelable {
         return audioResourceName;
     }
 
-    public static Creator<AudioVisualContent> getCREATOR() {
+    public static Creator<AudioVisualContentModel> getCREATOR() {
         return CREATOR;
     }
 
@@ -35,20 +35,20 @@ public class AudioVisualContent implements Parcelable {
         dest.writeInt(this.audioResourceName);
     }
 
-    protected AudioVisualContent(Parcel in) {
+    protected AudioVisualContentModel(Parcel in) {
         this.imageResourceName = in.readString();
         this.audioResourceName = in.readInt();
     }
 
-    public static final Parcelable.Creator<AudioVisualContent> CREATOR = new Parcelable.Creator<AudioVisualContent>() {
+    public static final Parcelable.Creator<AudioVisualContentModel> CREATOR = new Parcelable.Creator<AudioVisualContentModel>() {
         @Override
-        public AudioVisualContent createFromParcel(Parcel source) {
-            return new AudioVisualContent(source);
+        public AudioVisualContentModel createFromParcel(Parcel source) {
+            return new AudioVisualContentModel(source);
         }
 
         @Override
-        public AudioVisualContent[] newArray(int size) {
-            return new AudioVisualContent[size];
+        public AudioVisualContentModel[] newArray(int size) {
+            return new AudioVisualContentModel[size];
         }
     };
 }

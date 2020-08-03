@@ -18,18 +18,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kkndesasendang.sendangsmartlearning.R;
-import com.kkndesasendang.sendangsmartlearning.model.AudioVisualContent;
-import com.kkndesasendang.sendangsmartlearning.model.AudioVisualMaterial;
-import com.kkndesasendang.sendangsmartlearning.model.Material;
+import com.kkndesasendang.sendangsmartlearning.model.AudioVisualContentModel;
+import com.kkndesasendang.sendangsmartlearning.model.AudioVisualMaterialModel;
+import com.kkndesasendang.sendangsmartlearning.model.MaterialModel;
 
 import java.util.ArrayList;
 
 public class SelectMaterialFragment extends Fragment implements MaterialListAdapter.OnItemClickCallback {
     private RecyclerView mRVMaterialList;
     private TextView mTVEmptyPrompt;
-
-    private Material[] materials;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,18 +54,18 @@ public class SelectMaterialFragment extends Fragment implements MaterialListAdap
         adapter.setOnItemClickCallback(this);
         mRVMaterialList.setAdapter(adapter);
 
-        mSelectMaterialViewModel.getMaterialList().observe(getViewLifecycleOwner(), new Observer<ArrayList<Material>>() {
+        mSelectMaterialViewModel.getMaterialList().observe(getViewLifecycleOwner(), new Observer<ArrayList<MaterialModel>>() {
             @Override
-            public void onChanged(ArrayList<Material> materials) {
-                adapter.updateDataset(materials);
+            public void onChanged(ArrayList<MaterialModel> materialModels) {
+                adapter.updateDataset(materialModels);
             }
         });
     }
 
     @Override
-    public void onItemClick(Material data, View view) {
-        if (data.getClass() == AudioVisualMaterial.class) {
-            AudioVisualContent avContents[] = ((AudioVisualMaterial) data).getContents().toArray(new AudioVisualContent[0]);
+    public void onItemClick(MaterialModel data, View view) {
+        if (data.getClass() == AudioVisualMaterialModel.class) {
+            AudioVisualContentModel avContents[] = ((AudioVisualMaterialModel) data).getContents().toArray(new AudioVisualContentModel[0]);
             Navigation.findNavController(view).navigate(SelectMaterialFragmentDirections.actionNavSelectMaterialToNavAudioVisual(avContents, data.getMaterialName()));
         }
     }

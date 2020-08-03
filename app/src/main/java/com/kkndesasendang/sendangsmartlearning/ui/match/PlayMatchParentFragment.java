@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kkndesasendang.sendangsmartlearning.R;
+import com.kkndesasendang.sendangsmartlearning.model.MatchQuestionModel;
 import com.kkndesasendang.sendangsmartlearning.ui.learn.audioVisual.AudioVisualChildFragment;
 import com.kkndesasendang.sendangsmartlearning.ui.learn.audioVisual.ViewPagerAdapter;
 
@@ -46,10 +47,10 @@ public class PlayMatchParentFragment extends Fragment {
         final List<Fragment> fragments = new ArrayList<>();
         final TextView mTVQuestionTitle = view.findViewById(R.id.playMatchParentTitle);
 
-        mMatchViewModel.getQuizzes().observe(getViewLifecycleOwner(), new Observer<JSONArray>() {
+        mMatchViewModel.getMatchQuestions().observe(getViewLifecycleOwner(), new Observer<ArrayList<MatchQuestionModel>>() {
             @Override
-            public void onChanged(JSONArray jsonArray) {
-                for (int i = 0; i < jsonArray.length(); i++) {
+            public void onChanged(ArrayList<MatchQuestionModel> matchQuestionModels) {
+                for (int i = 0 ; i < matchQuestionModels.size(); i++) {
                     Bundle bundle = new Bundle();
                     bundle.putInt(PlayMatchParentFragment.EXTRA_INDEX, i);
                     bundle.putInt(PlayMatchParentFragment.EXTRA_VP_ID, R.id.playMatchParentViewPager);

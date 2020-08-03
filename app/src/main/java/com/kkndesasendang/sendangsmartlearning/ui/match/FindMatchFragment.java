@@ -29,6 +29,7 @@ import static com.kkndesasendang.sendangsmartlearning.helper.Helper.popToast;
 
 public class FindMatchFragment extends Fragment {
     private AlertDialog mFindingMatchDialog;
+    private View mViewLol;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class FindMatchFragment extends Fragment {
         mFindMatchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mViewLol = view;
                 view.setEnabled(false);
                 mFindingMatchDialog.show();
                 String username = mUsernameEditText.getText().toString().trim();
@@ -101,20 +103,6 @@ public class FindMatchFragment extends Fragment {
         mMatchViewModel.getMatchReadyEventData().observe(getViewLifecycleOwner(), new Observer<JSONObject>() {
             @Override
             public void onChanged(JSONObject jsonObject) {
-                try {
-                    JSONArray participants = jsonObject.getJSONArray("participants");
-
-                    ArrayList<String> names = new ArrayList<>();
-                    for (int i = 0 ; i < participants.length(); i++) {
-                        names.add(participants.getString(i));
-                    }
-
-                    mMatchViewModel.mParticipants.setValue(names);
-                    mMatchViewModel.mMatchId.setValue(jsonObject.getString("matchId"));
-                    mMatchViewModel.mQuizzes.setValue(jsonObject.getJSONArray("quizzes"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
                 proceedToPlayMatch();
             }
         });
@@ -122,7 +110,7 @@ public class FindMatchFragment extends Fragment {
 
     private void proceedToPlayMatch() {
         mFindingMatchDialog.dismiss();
-        Navigation.findNavController(requireView()).navigate(R.id.action_nav_match_to_nav_play_match);
+        Navigation.findNavController(mViewLol).navigate(R.id.action_nav_match_to_nav_play_match);
         popToast(requireContext(), "Lomba berhasil dibuat");
     }
 }

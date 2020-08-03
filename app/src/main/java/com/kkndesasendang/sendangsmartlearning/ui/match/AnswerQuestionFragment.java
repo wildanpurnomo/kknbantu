@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.view.animation.LayoutAnimationController;
 import android.widget.TextView;
 
 import com.kkndesasendang.sendangsmartlearning.R;
+import com.kkndesasendang.sendangsmartlearning.model.MatchQuestionModel;
 import com.kkndesasendang.sendangsmartlearning.model.RankingModel;
 import com.kkndesasendang.sendangsmartlearning.wsutil.SocketEventEnum;
 
@@ -29,7 +31,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import static com.kkndesasendang.sendangsmartlearning.helper.Helper.logMessage;
 
@@ -40,6 +41,7 @@ public class AnswerQuestionFragment extends Fragment implements OptionListAdapte
 
     private TextView mTVTimer, mTVQuestionText;
     private OptionListAdapter mOptionListAdapter;
+    private CountDownTimer mCountDownTimer;
 
     private int mQuizIndex, mParentViewPagerId;
 
@@ -67,6 +69,19 @@ public class AnswerQuestionFragment extends Fragment implements OptionListAdapte
         mTVQuestionText = view.findViewById(R.id.answerQuestionFragQuestionText);
         final RecyclerView mOptionRV = view.findViewById(R.id.answerQuestionFragOptionsRV);
 
+        mCountDownTimer = new CountDownTimer(10000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTVTimer.setText(getString(R.string.answer_question_timer, millisUntilFinished / 1000));
+            }
+
+            @Override
+            public void onFinish() {
+                mWaitingDialog.setMessage("Anda tidak menjawab pertanyaan ini. Mohon menunggu peserta lain.");
+                submitAnswer(false);
+            }
+        };
+
         LayoutAnimationController animController = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_fall_down);
         mOptionListAdapter = new OptionListAdapter();
         mOptionListAdapter.setOnItemClickCallback(this);
@@ -74,12 +89,23 @@ public class AnswerQuestionFragment extends Fragment implements OptionListAdapte
         mOptionRV.setHasFixedSize(true);
         mOptionRV.setLayoutAnimation(animController);
         mOptionRV.setAdapter(mOptionListAdapter);
+
+        mMatchViewModel.getMatchQuestions().observe(getViewLifecycleOwner(), new Observer<ArrayList<MatchQuestionModel>>() {
+            @Override
+            public void onChanged(ArrayList<MatchQuestionModel> matchQuestionModels) {
+                MatchQuestionModel currentQuestion = matchQuestionModels.get(mQuizIndex);
+                mTVQuestionText.setText(currentQuestion.getQuestionText());
+                mOptionListAdapter.updateDataset(currentQuestion.getOptions());
+            }
+        });
+
     }
 
     @Override
     public void onItemClick(String option, View view) {
-        mWaitingDialog.show();
-        boolean isAnswerCorrect = option.equalsIgnoreCase(mMatchViewModel.mAnswer.getValue());
+        mCountDownTimer.cancel();
+        String currentAnswer = mMatchViewModel.getMatchQuestions().getValue().get(mQuizIndex).getAnswer();
+        boolean isAnswerCorrect = option.equalsIgnoreCase(currentAnswer);
         logMessage("User choose " + option + ", " + isAnswerCorrect, this.getClass().getName());
         submitAnswer(isAnswerCorrect);
     }
@@ -87,28 +113,7 @@ public class AnswerQuestionFragment extends Fragment implements OptionListAdapte
     @Override
     public void onResume() {
         super.onResume();
-        mMatchViewModel.getQuizzes().observe(getViewLifecycleOwner(), new Observer<JSONArray>() {
-            @Override
-            public void onChanged(JSONArray jsonArray) {
-                try {
-                    JSONObject item = jsonArray.getJSONObject(mQuizIndex);
-                    String answer = item.getString("answer");
-                    mMatchViewModel.mAnswer.setValue(answer);
-
-                    String questionText = item.getString("question");
-                    mTVQuestionText.setText(questionText);
-
-                    JSONArray optionJsonArr = item.getJSONArray("options");
-                    ArrayList<String> options = new ArrayList<>();
-                    for (int i = 0; i < optionJsonArr.length(); i++) {
-                        options.add(optionJsonArr.getString(i));
-                    }
-                    mOptionListAdapter.updateDataset(options);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        mCountDownTimer.start();
 
         mMatchViewModel.getOneQuestionFinishedEventData().observe(getViewLifecycleOwner(), new Observer<JSONObject>() {
             @Override
@@ -137,6 +142,8 @@ public class AnswerQuestionFragment extends Fragment implements OptionListAdapte
     }
 
     private void submitAnswer(boolean isAnswerCorrect) {
+        mWaitingDialog.show();
+
         JSONObject payload = new JSONObject();
         try {
             payload.put("matchId", mMatchViewModel.mMatchId.getValue());

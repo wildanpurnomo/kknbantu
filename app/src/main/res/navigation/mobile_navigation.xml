@@ -25,8 +25,8 @@
             android:id="@+id/action_nav_select_material_to_nav_audio_visual"
             app:destination="@id/nav_audio_visual">
             <argument
-                android:name="material"
-                app:argType="com.kkndesasendang.sendangsmartlearning.model.AudioVisualContent[]" />
+                android:name="materialModel"
+                app:argType="com.kkndesasendang.sendangsmartlearning.model.AudioVisualContentModel[]" />
             <argument
                 android:name="materialName"
                 app:argType="string"/>
@@ -39,8 +39,8 @@
         android:label="@string/page_audio_visual"
         tools:layout="@layout/fragment_audio_visual_parent">
         <argument
-            android:name="material"
-            app:argType="com.kkndesasendang.sendangsmartlearning.model.AudioVisualContent[]" />
+            android:name="materialModel"
+            app:argType="com.kkndesasendang.sendangsmartlearning.model.AudioVisualContentModel[]" />
         <argument
             android:name="materialName"
             app:argType="string"/>

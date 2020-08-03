@@ -20,18 +20,14 @@ import android.view.animation.LayoutAnimationController;
 import android.widget.TextView;
 
 import com.kkndesasendang.sendangsmartlearning.R;
+import com.kkndesasendang.sendangsmartlearning.model.MatchQuestionModel;
 import com.kkndesasendang.sendangsmartlearning.model.RankingModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-
-import static com.kkndesasendang.sendangsmartlearning.helper.Helper.logMessage;
 
 public class RankingFragment extends Fragment {
     private MatchViewModel mMatchViewModel;
@@ -65,22 +61,6 @@ public class RankingFragment extends Fragment {
         mTVAnswer = view.findViewById(R.id.rankingCorrectAnswer);
         mTVNextQuestionPrompt = view.findViewById(R.id.rankingNextQuestionIn);
 
-
-        LayoutAnimationController animController = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_fall_down);
-        mRankingRV = view.findViewById(R.id.rankingListRV);
-        mRankingAdapter = new RankingListAdapter();
-
-        mRankingRV.setLayoutManager(new LinearLayoutManager(requireContext()));
-        mRankingRV.setHasFixedSize(true);
-        mRankingRV.setLayoutAnimation(animController);
-        mRankingRV.setAdapter(mRankingAdapter);
-
-        mMatchViewModel = new ViewModelProvider(requireActivity()).get(MatchViewModel.class);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         mTimer = new CountDownTimer(5000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -92,36 +72,17 @@ public class RankingFragment extends Fragment {
                 mParentViewPager.setCurrentItem(mParentViewPager.getCurrentItem() + 1);
             }
         };
-        mTimer.start();
 
-        mMatchViewModel.getQuizzes().observe(getViewLifecycleOwner(), new Observer<JSONArray>() {
-            @Override
-            public void onChanged(JSONArray jsonArray) {
-                try {
-                    JSONObject item = jsonArray.getJSONObject(mQuizIndex);
+        LayoutAnimationController animController = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_fall_down);
+        mRankingRV = view.findViewById(R.id.rankingListRV);
+        mRankingAdapter = new RankingListAdapter();
 
-                    String questionTest = item.getString("question");
-                    mTVQuestion.setText(questionTest);
+        mRankingRV.setLayoutManager(new LinearLayoutManager(requireContext()));
+        mRankingRV.setHasFixedSize(true);
+        mRankingRV.setLayoutAnimation(animController);
+        mRankingRV.setAdapter(mRankingAdapter);
 
-                    JSONArray optionJsonArr = item.getJSONArray("options");
-                    String correctAnswer = mMatchViewModel.mAnswer.getValue();
-
-                    if (correctAnswer != null) {
-                        if (correctAnswer.equalsIgnoreCase("A")) {
-                            mTVAnswer.setText(getString(R.string.correct_answer_placeholder, optionJsonArr.getString(0)));
-                        } else if (correctAnswer.equalsIgnoreCase("B")) {
-                            mTVAnswer.setText(getString(R.string.correct_answer_placeholder, optionJsonArr.getString(1)));
-                        } else if (correctAnswer.equalsIgnoreCase("C")) {
-                            mTVAnswer.setText(getString(R.string.correct_answer_placeholder, optionJsonArr.getString(2)));
-                        } else {
-                            mTVAnswer.setText(getString(R.string.correct_answer_placeholder, optionJsonArr.getString(3)));
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        mMatchViewModel = new ViewModelProvider(requireActivity()).get(MatchViewModel.class);
 
         mMatchViewModel.getCurrentRanking().observe(getViewLifecycleOwner(), new Observer<ArrayList<RankingModel>>() {
             @Override
@@ -129,5 +90,20 @@ public class RankingFragment extends Fragment {
                 mRankingAdapter.updateDataset(rankingModels);
             }
         });
+
+        mMatchViewModel.getMatchQuestions().observe(getViewLifecycleOwner(), new Observer<ArrayList<MatchQuestionModel>>() {
+            @Override
+            public void onChanged(ArrayList<MatchQuestionModel> matchQuestionModels) {
+                MatchQuestionModel currentQuestion = matchQuestionModels.get(mQuizIndex);
+                mTVQuestion.setText(currentQuestion.getQuestionText());
+                mTVAnswer.setText(currentQuestion.getAnswerFullText());
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mTimer.start();
     }
 }

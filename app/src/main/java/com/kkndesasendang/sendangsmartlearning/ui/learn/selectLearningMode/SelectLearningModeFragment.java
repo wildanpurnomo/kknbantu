@@ -4,27 +4,18 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.kkndesasendang.sendangsmartlearning.R;
-import com.kkndesasendang.sendangsmartlearning.model.Grade;
-import com.kkndesasendang.sendangsmartlearning.model.Material;
-
-import java.util.Objects;
-
-import static android.content.ContentValues.TAG;
 
 public class SelectLearningModeFragment extends Fragment {
     private CardView mCardMaterial, mCardQuiz;
-    private Grade gradeChosen = new Grade();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

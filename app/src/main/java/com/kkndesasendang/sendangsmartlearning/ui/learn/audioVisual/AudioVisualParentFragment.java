@@ -8,24 +8,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.kkndesasendang.sendangsmartlearning.R;
-import com.kkndesasendang.sendangsmartlearning.model.AudioVisualContent;
+import com.kkndesasendang.sendangsmartlearning.model.AudioVisualContentModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class AudioVisualParentFragment extends Fragment {
     private ViewPager2 mViewPager;
     private ViewPagerAdapter mAdapter;
 
-    private AudioVisualContent[] avContents;
+    private AudioVisualContentModel[] avContents;
     private String materialName;
 
     @Override
@@ -40,7 +37,7 @@ public class AudioVisualParentFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         if (getArguments() != null) {
-            avContents = AudioVisualParentFragmentArgs.fromBundle(getArguments()).getMaterial();
+            avContents = AudioVisualParentFragmentArgs.fromBundle(getArguments()).getMaterialModel();
             materialName = AudioVisualParentFragmentArgs.fromBundle(getArguments()).getMaterialName();
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(materialName);
         }
@@ -49,7 +46,7 @@ public class AudioVisualParentFragment extends Fragment {
         mViewPager.setPageTransformer(new DepthPageTransformer());
         List<Fragment> fragments = new ArrayList<>();
 
-        for (AudioVisualContent avContent : avContents) {
+        for (AudioVisualContentModel avContent : avContents) {
             Bundle bundle = new Bundle();
             bundle.putString(AudioVisualChildFragment.EXTRA_IMAGE, avContent.getImageResourceName());
             bundle.putInt(AudioVisualChildFragment.EXTRA_AUDIO, avContent.getAudioResourceName());
