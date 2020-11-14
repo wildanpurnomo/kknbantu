@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">SendangSmartLearning</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Selamat Datang</string>
+    <string name="nav_header_subtitle">di Aplikasi SiCenik</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_learn">Belajar</string>
+    <string name="menu_match">Berlomba</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="splash_screen_title_1">GAMASELA</string>
+    <string name="splash_screen_title_2">Selamat Datang!</string>
+    <string name="splash_screen_title_3">Belajar</string>
+    <string name="splash_screen_title_4">Siapa Pintar</string>
+
+    <string name="page_select_class">Pilih Kelas</string>
+    <string name="page_select_mode">Pilih Mode Belajar</string>
+
+    <string-array name="grade_list">
+        <item>Kelas 1 SD</item>
+        <item>Kelas 2 SD</item>
+        <item>Kelas 3 SD</item>
+        <item>Kelas 4 SD</item>
+        <item>Kelas 5 SD</item>
+        <item>Kelas 6 SD</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Sek ya capek dan bingung</string>
+    <string name="learning_mode_material">Materi</string>
+    <string name="learning_mode_quiz">Quiz</string>
+    <string name="page_select_material">Pilih Materi</string>
+    <string name="empty_material_prompt">Materi belum tersedia saat ini</string>
+    <string name="page_audio_visual">Audio Visual</string>
+    <string name="page_audio_vis_text">Geser layar untuk gambar selanjutnya</string>
+    <string name="find_match_create_username">Masukkan username</string>
+    <string name="find_match_find_match">Cari lomba</string>
+    <string name="find_match">Cari Lomba</string>
+    <string name="play_match">Bermain</string>
+    <string name="play_match_question_num">Pertanyaan %1$d</string>
+    <string name="answer_question_timer">Waktu: %1$d detik lagi</string>
+    <string name="next_question_countdown">Pertanyaan selanjutnya dalam %1$d detik.</string>
+    <string name="correct_answer_placeholder">Jawaban benar: %1$s</string>
+    <string name="current_ranking">Ranking sementara</string>
+    <string name="match_finished">Lomba selesai</string>
+    <string name="final_ranking">Terima kasih telah bermain</string>
+    <string name="to_main_menu">Kembali ke menu utama</string>
+</resources>
