@@ -3,27 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.PlayMatchParentFragment">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_list"
+    android:layout_marginBottom="16dp">
 
     <TextView
-        android:id="@+id/playMatchParentTitle"
-        style="@style/TitleTextVIew"
+        style="@style/ListTextView"
+        android:id="@+id/listItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        tools:text="Pertanyaan 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/playMatchParentViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playMatchParentTitle" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Grammar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

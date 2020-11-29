@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/match_navigation"
+    app:startDestination="@id/nav_match">
+
+    <fragment
+        android:id="@+id/nav_match"
+        android:name="com.kkndesasendang.sendangsmartlearning.ui.fragments.FindMatchFragment"
+        android:label="@string/find_match"
+        tools:layout="@layout/fragment_find_match">
+        <action
+            android:id="@+id/action_nav_match_to_nav_play_match"
+            app:destination="@id/nav_play_match" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_play_match"
+        android:name="com.kkndesasendang.sendangsmartlearning.ui.fragments.PlayMatchParentFragment"
+        android:label="@string/play_match"
+        tools:layout="@layout/fragment_play_match" />
+</navigation>

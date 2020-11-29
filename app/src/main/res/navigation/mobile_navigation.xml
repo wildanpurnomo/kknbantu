@@ -3,52 +3,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_select_material">
+    app:startDestination="@+id/nav_select_topic">
 
     <fragment
-        android:id="@+id/nav_select_material"
-        android:name="com.kkndesasendang.sendangsmartlearning.ui.learn.selectMaterial.SelectMaterialFragment"
+        android:id="@+id/nav_select_topic"
+        android:name="com.kkndesasendang.sendangsmartlearning.ui.fragments.SelectTopicFragment"
         android:label="@string/page_select_material"
-        tools:layout="@layout/fragment_select_material">
+        tools:layout="@layout/fragment_select_topic">
+
+        <argument
+            android:name="topics"
+            app:argType="com.kkndesasendang.sendangsmartlearning.model.GamaselaTopicModel[]" />
+
         <action
             android:id="@+id/action_nav_select_material_to_nav_audio_visual"
-            app:destination="@id/nav_audio_visual">
+            app:destination="@id/nav_select_material">
             <argument
-                android:name="materialModel"
-                app:argType="com.kkndesasendang.sendangsmartlearning.model.AudioVisualContentModel[]" />
+                android:name="materials"
+                app:argType="com.kkndesasendang.sendangsmartlearning.model.GamaselaMaterialModel[]" />
             <argument
-                android:name="materialName"
-                app:argType="string"/>
+                android:name="topicName"
+                app:argType="string" />
         </action>
     </fragment>
 
     <fragment
-        android:id="@+id/nav_audio_visual"
-        android:name="com.kkndesasendang.sendangsmartlearning.ui.learn.audioVisual.AudioVisualParentFragment"
-        android:label="@string/page_audio_visual"
-        tools:layout="@layout/fragment_audio_visual_parent">
-        <argument
-            android:name="materialModel"
-            app:argType="com.kkndesasendang.sendangsmartlearning.model.AudioVisualContentModel[]" />
-        <argument
-            android:name="materialName"
-            app:argType="string"/>
-    </fragment>
+        android:id="@+id/nav_select_material"
+        android:name="com.kkndesasendang.sendangsmartlearning.ui.fragments.SelectMaterialFragment"
+        android:label="Pilih Topik"
+        tools:layout="@layout/fragment_select_material">
 
-    <fragment
-        android:id="@+id/nav_match"
-        android:name="com.kkndesasendang.sendangsmartlearning.ui.match.FindMatchFragment"
-        android:label="@string/find_match"
-        tools:layout="@layout/fragment_find_match" >
+        <argument
+            android:name="materials"
+            app:argType="com.kkndesasendang.sendangsmartlearning.model.GamaselaMaterialModel[]" />
+        <argument
+            android:name="topicName"
+            app:argType="string" />
+
         <action
-            android:id="@+id/action_nav_match_to_nav_play_match"
-            app:destination="@id/nav_play_match" />
+            android:id="@+id/action_nav_select_sub_material_to_nav_audio_visual"
+            app:destination="@id/nav_display_material">
+            <argument
+                android:name="material"
+                app:argType="com.kkndesasendang.sendangsmartlearning.model.GamaselaMaterialModel" />
+        </action>
     </fragment>
 
     <fragment
-        android:id="@+id/nav_play_match"
-        android:name="com.kkndesasendang.sendangsmartlearning.ui.match.PlayMatchParentFragment"
-        android:label="@string/play_match"
-        tools:layout="@layout/fragment_play_match"/>
+        android:id="@+id/nav_display_material"
+        android:name="com.kkndesasendang.sendangsmartlearning.ui.fragments.DisplayMaterialFragment"
+        android:label="@string/page_audio_visual"
+        tools:layout="@layout/fragment_display_material">
+
+        <argument
+            android:name="material"
+            app:argType="com.kkndesasendang.sendangsmartlearning.model.GamaselaMaterialModel" />
+    </fragment>
 
 </navigation>

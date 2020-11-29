@@ -4,28 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.FindMatchFragment">
+    tools:context=".ui.fragments.DisplayMaterialFragment"
+    android:background="@color/colorPrimary">
 
-    <EditText
-        android:id="@+id/fragFindMatchET"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/displayMaterialTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="@string/find_match_create_username"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
+        tools:text="@string/page_audio_vis_text"
+        android:textSize="18sp"
+        android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/fragFindMatchBtn"
+    <TextView
+        android:id="@+id/displayMaterialText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/find_match_find_match"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragFindMatchET" />
+        app:layout_constraintTop_toBottomOf="@+id/displayMaterialTitle"
+        tools:text="Halo niece and nephew its uncle roger" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
