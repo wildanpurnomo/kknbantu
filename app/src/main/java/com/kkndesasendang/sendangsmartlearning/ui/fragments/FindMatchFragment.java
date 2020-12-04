@@ -41,6 +41,7 @@ public class FindMatchFragment extends Fragment {
         mFindingMatchDialog = new AlertDialog.Builder(requireActivity())
                 .setTitle("Lomba sedang disiapkan")
                 .setMessage("Mencoba menghubungi server...")
+                .setCancelable(false)
                 .create();
         final MatchViewModel mMatchViewModel = new ViewModelProvider(requireActivity()).get(MatchViewModel.class);
         final EditText mUsernameEditText = view.findViewById(R.id.fragFindMatchET);
@@ -50,11 +51,12 @@ public class FindMatchFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mViewLol = view;
-                view.setEnabled(false);
-                mFindingMatchDialog.show();
                 String username = mUsernameEditText.getText().toString().trim();
                 if (!username.isEmpty()) {
+                    mFindingMatchDialog.show();
                     mMatchViewModel.connectSocket();
+                } else {
+                    popToast(requireContext(), "Username tidak boleh kosong");
                 }
             }
         });
@@ -90,7 +92,7 @@ public class FindMatchFragment extends Fragment {
             public void onChanged(JSONObject jsonObject) {
                 try {
                     JSONArray participants = jsonObject.getJSONArray("participants");
-                    mFindingMatchDialog.setMessage("Peserta bergabung: " + participants.length() + "/5");
+                    mFindingMatchDialog.setMessage("Peserta bergabung: " + participants.length() + "/3");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
