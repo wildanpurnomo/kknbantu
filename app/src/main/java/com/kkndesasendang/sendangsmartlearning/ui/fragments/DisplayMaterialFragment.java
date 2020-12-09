@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.kkndesasendang.sendangsmartlearning.R;
+import com.mukesh.MarkdownView;
 
 public class DisplayMaterialFragment extends Fragment {
 
@@ -31,10 +32,10 @@ public class DisplayMaterialFragment extends Fragment {
             String materialText = DisplayMaterialFragmentArgs.fromBundle(getArguments()).getMaterial().getMaterialText();
 
             TextView tvMaterialName = view.findViewById(R.id.displayMaterialTitle);
-            TextView tvMaterialTextContent = view.findViewById(R.id.displayMaterialText);
+            MarkdownView tvMaterialTextContent = view.findViewById(R.id.displayMaterialText);
 
             tvMaterialName.setText(materialName);
-            tvMaterialTextContent.setText(materialText);
+            tvMaterialTextContent.setMarkDownText(materialText);
         }
     }
 }
