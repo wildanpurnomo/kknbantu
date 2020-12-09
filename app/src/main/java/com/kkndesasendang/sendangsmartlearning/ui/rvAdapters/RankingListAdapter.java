@@ -25,7 +25,7 @@ public class RankingListAdapter extends RecyclerView.Adapter<RankingListAdapter.
     @NonNull
     @Override
     public RankingListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ranking_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_generic_list, parent, false);
         return new RankingListViewHolder(view);
     }
 
@@ -44,11 +44,11 @@ public class RankingListAdapter extends RecyclerView.Adapter<RankingListAdapter.
 
         public RankingListViewHolder(@NonNull View itemView) {
             super(itemView);
-            rankingText = itemView.findViewById(R.id.itemRankingText);
+            rankingText = itemView.findViewById(R.id.listItemText);
         }
 
         public void bindTo(RankingModel ranking, int position) {
-            rankingText.setText(String.format(Locale.getDefault(), "Rank %d: %s - %d poin", position + 1, ranking.getParticipantName(), ranking.getParticipantScore()));
+            rankingText.setText(String.format(Locale.getDefault(), "Ranking %d: %s - %d poin", position + 1, ranking.getParticipantName(), ranking.getParticipantScore()));
         }
     }
 }

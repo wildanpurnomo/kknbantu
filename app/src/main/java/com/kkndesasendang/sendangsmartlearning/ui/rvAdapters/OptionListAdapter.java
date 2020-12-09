@@ -33,7 +33,7 @@ public class OptionListAdapter extends RecyclerView.Adapter<OptionListAdapter.Op
     @NonNull
     @Override
     public OptionListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_option_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_generic_list, parent, false);
         return new OptionListViewHolder(view);
     }
 
@@ -52,7 +52,7 @@ public class OptionListAdapter extends RecyclerView.Adapter<OptionListAdapter.Op
 
         public OptionListViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvOptionList = itemView.findViewById(R.id.itemOptionText);
+            tvOptionList = itemView.findViewById(R.id.listItemText);
         }
 
         public void bindTo(final String optionText) {

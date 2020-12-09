@@ -60,7 +60,7 @@ public class RankingFragment extends Fragment {
         mTVAnswer = view.findViewById(R.id.rankingCorrectAnswer);
         mTVNextQuestionPrompt = view.findViewById(R.id.rankingNextQuestionIn);
 
-        mTimer = new CountDownTimer(5000, 1000) {
+        mTimer = new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 mTVNextQuestionPrompt.setText(getString(R.string.next_question_countdown, millisUntilFinished / 1000));
@@ -72,13 +72,11 @@ public class RankingFragment extends Fragment {
             }
         };
 
-        LayoutAnimationController animController = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_fall_down);
         mRankingRV = view.findViewById(R.id.rankingListRV);
         mRankingAdapter = new RankingListAdapter();
 
         mRankingRV.setLayoutManager(new LinearLayoutManager(requireContext()));
         mRankingRV.setHasFixedSize(true);
-        mRankingRV.setLayoutAnimation(animController);
         mRankingRV.setAdapter(mRankingAdapter);
 
         mMatchViewModel = new ViewModelProvider(requireActivity()).get(MatchViewModel.class);
@@ -95,7 +93,7 @@ public class RankingFragment extends Fragment {
             public void onChanged(ArrayList<MatchQuestionModel> matchQuestionModels) {
                 MatchQuestionModel currentQuestion = matchQuestionModels.get(mQuizIndex);
                 mTVQuestion.setText(currentQuestion.getQuestionText());
-                mTVAnswer.setText(currentQuestion.getAnswerFullText());
+                mTVAnswer.setText(String.format("Jawaban: %s", currentQuestion.getAnswerFullText()));
             }
         });
     }

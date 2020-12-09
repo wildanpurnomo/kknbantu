@@ -66,6 +66,7 @@ public class AnswerQuestionFragment extends Fragment implements OptionListAdapte
         mWaitingDialog = new AlertDialog.Builder(requireActivity())
                 .setTitle("Menunggu jawaban peserta lain")
                 .setMessage("Anda telah menjawab pertanyaan ini. Mohon menunggu peserta lain.")
+                .setCancelable(false)
                 .create();
         mTVTimer = view.findViewById(R.id.answerQuestionFragTimer);
         mTVQuestionText = view.findViewById(R.id.answerQuestionFragQuestionText);
@@ -84,12 +85,10 @@ public class AnswerQuestionFragment extends Fragment implements OptionListAdapte
             }
         };
 
-        LayoutAnimationController animController = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_fall_down);
         mOptionListAdapter = new OptionListAdapter();
         mOptionListAdapter.setOnItemClickCallback(this);
         mOptionRV.setLayoutManager(new LinearLayoutManager(requireContext()));
         mOptionRV.setHasFixedSize(true);
-        mOptionRV.setLayoutAnimation(animController);
         mOptionRV.setAdapter(mOptionListAdapter);
 
         mMatchViewModel.getMatchQuestions().observe(getViewLifecycleOwner(), new Observer<ArrayList<MatchQuestionModel>>() {

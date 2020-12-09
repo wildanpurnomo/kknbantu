@@ -29,7 +29,7 @@
     </style>
 
     <style name="TitleTextVIew">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">18sp</item>
     </style>
 
@@ -39,7 +39,7 @@
     </style>
 
     <style name="NormalTextVIew">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">14sp</item>
     </style>
 
@@ -56,6 +56,12 @@
 
     <style name="GenericFragmentBg">
         <item name="android:background">@color/colorPrimary</item>
+    </style>
+    
+    <style name="GamaselaButton">
+        <item name="android:background">@drawable/bg_list</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:padding">16dp</item>
     </style>
 
 </resources>
