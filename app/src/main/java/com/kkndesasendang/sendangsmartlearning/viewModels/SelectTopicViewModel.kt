@@ -16,11 +16,11 @@ class SelectTopicViewModel: ViewModel() {
 
         // Grammar
         topicModels.add(GamaselaTopicModel("Grammar", arrayListOf(
-                GamaselaMaterialModel("Cara Menghubungkan Dua Ide Kontras", "❖\tPenjelasan \n" +
+                GamaselaMaterialModel("Cara Menghubungkan Dua Ide Kontras", "**❖\tPenjelasan** \n" +
                         "\n" +
-                        "Although, even though, in spite of and despite dapat digunakan untuk menghubungkan dua ide atau makna yang berbeda dalam suatu kalimat utuh. Kata-kata ini juga bisa untuk menunjukkan salah satu fakta yang membuat fakta yang lainnya memiliki makna yang berbeda. kata-kata ini dapat digunakan di awal atau di tengah kalimat.\n" +
+                        "*Although, even though, in spite of and despite* dapat digunakan untuk menghubungkan dua ide atau makna yang berbeda dalam suatu kalimat utuh. Kata-kata ini juga bisa untuk menunjukkan salah satu fakta yang membuat fakta yang lainnya memiliki makna yang berbeda. kata-kata ini dapat digunakan di awal atau di tengah kalimat.\n" +
                         "\n" +
-                        "Example : \n" +
+                        "**Example :** \n" +
                         "\n" +
                         "Despite the rain, we enjoyed the festival.\n" +
                         "(Meskipun hujan turun, kami menikmati festival itu).\n" +
@@ -30,74 +30,74 @@ class SelectTopicViewModel: ViewModel() {
                         "\n" +
                         "Perbedaan yang paling mendasar antara, Although, even though, in spite of and despite adalah penggunaan dengan struktur yang berbeda pada kalimat.\n" +
                         "\n" +
-                        "In spite of / Despite\n" +
+                        "*In spite of / Despite*\n" +
                         "\n" +
                         "Sesudah kata In spite of dan Despite kita gunakan Noun, Gerund, dan Pronoun.\n" +
                         "\n" +
-                        "Example :\n" +
-                        "1.\tThey never made much money, in spite of their success.\n" +
+                        "**Example :**\n" +
+                        "1.\t*They never made much money, in spite of their success.*\n" +
                         "(Mereka tidak mendapatkan banyak uang terlepas/meskipun dari kesuksesan mereka).\n" +
-                        "\n2.\tDespite having a headache, I had a great birthday.\n" +
+                        "\n2.\t*Despite having a headache, I had a great birthday.*\n" +
                         "(Walaupun sedang sakit kepala, saya mengalami pesta ulang tahun yang luar biasa).\n" +
                         "\n" +
-                        "3.\tIn spite of the pain in his leg, he completed the marathon.\n" +
+                        "3.\t*In spite of the pain in his leg, he completed the marathon.*\n" +
                         "(Walaupun terasa nyeri pada kakinya, dia dapat menyelesaikan maraton).\n" +
                         "\n" +
                         "Catatan bahwa hal umum untuk menggunakan In spite of dan Despite jika menunjukkan sebuah fakta.\n" +
                         "\n" +
-                        "1.\t In spite of the fact that he worked very hard, he didn't pass the exam.\n" +
+                        "1.\t*In spite of the fact that he worked very hard, he didn't pass the exam.*\n" +
                         " (Meskipun faktanya dia bekerja keras, , dia tidak lulus dari ujian).\n" +
                         "\n" +
-                        "Although / Even though\n" +
+                        "*Although / Even though*\n" +
                         "Sesudah Although dan Even though, kita harus menggunakan Subject dan Verb. Even though agak kuat dan lebih memiliki empati ketimbang Although.\n" +
                         "\n" +
-                        "Example : \n" +
-                        "1.\tI enjoyed the course, although I would have liked more grammar practice.\n" +
+                        "**Example :**\n" +
+                        "1.\t*I enjoyed the course, although I would have liked more grammar practice.*\n" +
                         "(saya menikmati pelajaran tersebut, walaupun saya agak lebih menyukai praktek grammar.)\n" +
                         "\n" +
-                        "2.\tAlthough we saw each other every day, we didn't really know each other.\n" +
+                        "2.\t*Although we saw each other every day, we didn't really know each other.*\n" +
                         "(Meskipun kami melihat satu dengan yang lain setiap hari, kami tidak terlalu tahu satu dengan yang lain).\n"),
                 GamaselaMaterialModel("Cara Menggunakan Just, Yet, Still, dan Already", "•\tPenjelasan\n" +
                         "\n" +
-                        "Dalam Bahasa Inggris kita sering menjumpai kata-kata seperti : just, yet, still and already. Kita sering menggunakan 4 kata tersebut dalam tensis Present Perfect Tense karena kata-kata tersebut mewakili kondisi saat ini. Pembahasan kali ini kita fokuskan pada arti dan penggunaan 4 kata ini pada tensis Present Perfect Tense.\n" +
+                        "Dalam Bahasa Inggris kita sering menjumpai kata-kata seperti : *just, yet, still and already.* Kita sering menggunakan 4 kata tersebut dalam tensis Present Perfect Tense karena kata-kata tersebut mewakili kondisi saat ini. Pembahasan kali ini kita fokuskan pada arti dan penggunaan 4 kata ini pada tensis Present Perfect Tense.\n" +
                         "\n" +
                         "**Just**\n" +
                         "\n" +
                         "Just kita gunakan dalam Present Perfect Tense yang memiliki arti baru saja (waktu yang singkat sebelum kejadian saat itu).\n" +
                         "\n" +
-                        "Example :\n" +
-                        "1.\tI've just seen Susan coming out of the cinema.\n" +
+                        "**Example :**\n" +
+                        "1.\t*I've just seen Susan coming out of the cinema.*\n" +
                         "(Aku baru saja melihat Susan keluar dari bioskop).\n" +
                         "\n" +
-                        "2.  Mike's just called. Can you ring him back, please?\n" +
+                        "2.  *Mike's just called. Can you ring him back, please?*\n" +
                         "    (Mike baru saja menelpon, dapatkah kamu menelpon balik dia?).\n" +
                         "\n" +
-                        "3. Have you just taken my pen?\n" +
+                        "3. *Have you just taken my pen?*\n" +
                         "   (Sudahkah kamu mengambil pulpen ku barusan / baru saja?)\n" +
                         "\n" +
                         "**Yet**\n" +
                         "\n" +
                         "Yet dalam Present Perfect Tense memiliki arti “hingga saat ini/sampai saat ini”. Dalam konteks ini kata Yet hanya digunakan dalam kalimat negative atau kalimat tanya.\n" +
                         "\n" +
-                        "Example :\n" +
-                        "1. Have you finished your homework yet?\n" +
+                        "**Example :**\n" +
+                        "1. *Have you finished your homework yet?*\n" +
                         "    (Sudahkah kamu menyelesaikan PR mu sampai saat ini?)\n" +
                         "\n" +
-                        "2. I have not eaten Samyang yet\n" +
+                        "2. *I have not eaten Samyang yet*\n" +
                         "    (aku belum pernah makan Samyang sampai saat ini)\n" +
                         "\n" +
-                        "3. He hasn't arrived yet.\n" +
+                        "3. *He hasn't arrived yet.*\n" +
                         "    (Dia belum datang sampai saat ini)\n" +
                         "\n" +
                         "**Still**\n" +
                         "\n" +
                         "Kata ini digunakan untuk membicarakan sesuatu yang belum selesai terjadi, khususnya ketika kita memprediksinya akan selesai lebih awal. Kata ‘still’ biasanya muncul di tengah-tengah kalimat. Kata ini juga sering digunakan di tenses lainnya dan penggunaannya seperti pada present perfect. Kata ini lazim digunakan pada bentuk kalimat negatif.\n" +
                         "\n" +
-                        "Example :\n" +
-                        "1. Lionel Messi still has not played for Barcelona.\n" +
+                        "**Example :**\n" +
+                        "1. *Lionel Messi still has not played for Barcelona.*\n" +
                         "   (Lionel Messi masih belum bermain untuk Barcelona)\n" +
                         "\n" +
-                        "2. Innes still has not come home.\n" +
+                        "2. *Innes still has not come home.\n" +
                         "   (Innes masih belum pulang ke rumah)\n" +
                         "\n" +
                         "3. Rany still has not finished the assignment\n" +
@@ -107,7 +107,7 @@ class SelectTopicViewModel: ViewModel() {
                         "\n" +
                         "Kata already digunakan dalam Present Perfect Tense yang memiliki arti sudah. Kita menggunakan kata ini ketika sesuatu sudah terjadi sebelum hal lain terjadi.\n" +
                         "\n" +
-                        "Example :\n" +
+                        "**Example :**\n" +
                         "1. Hagung already used his chance to get the discount in online shop.\n" +
                         "   (Hagung sudah menggunakan kesempatannya untuk mendapatkan diskon di toko\n" +
                         "    Online)\n" +
@@ -136,18 +136,18 @@ class SelectTopicViewModel: ViewModel() {
                         "\n" +
                         "Jika kita membuat bentuk perbandingan dari adjective and adverb kita menggunakan so much untuk memperkuat maknanya.\n" +
                         "\n" +
-                        "Example :\n" +
-                        "1.\tThey were so much more innocent when they were younger.\n" +
+                        "**Example :**\n" +
+                        "1.\t*They were so much more innocent when they were younger.*\n" +
                         "(Mereka Nampak terlihat lebih polos ketika mereka lebih muda)\n" +
                         "\n" +
-                        "2. I work so much more quickly when I can concentrate.\n" +
+                        "2. *I work so much more quickly when I can concentrate.*\n" +
                         "    (saya bekerja sangat lebih cepat ketika saya konsentrasi)\n" +
                         "\n" +
                         "Nouns\n" +
                         "Kita dapat menggunakan such + noun untuk membuat makna kalimat semakin kuat \n" +
                         "\n" +
-                        "Example : \n" +
-                        "1. You're such an angel!\n" +
+                        "*Example :* \n" +
+                        "1. *You're such an angel!*\n" +
                         "   (Kamu seperti seorang malaikat)\n"),
                 GamaselaMaterialModel("Cara Menghubungkan Dua Ide Kontras", "❖\tPenjelasan \n" +
                         "\n" +
